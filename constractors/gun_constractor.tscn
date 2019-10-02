@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://constractors/gun_constractor.gd" type="Script" id=2]
+
+[node name="gun" type="Sprite"]
+scale = Vector2( 1, 0.5 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="pivot" type="Position2D" parent="."]
+position = Vector2( 32, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="RayCast2D" type="RayCast2D" parent="pivot"]
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 1000, 0 )
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="recharg" type="Timer" parent="."]
+
+[node name="reload" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="reload" to="." method="_on_reload_timeout"]
